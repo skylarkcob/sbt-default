@@ -1,0 +1,1 @@
+<?php SB_Theme::footer(); ?>
