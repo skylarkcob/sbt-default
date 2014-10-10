@@ -1,1 +1,2 @@
-<?php SB_Theme::header(); ?>
+<?php
+SB_Theme::the_header();
