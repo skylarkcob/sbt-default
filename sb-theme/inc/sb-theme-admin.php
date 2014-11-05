@@ -20,15 +20,45 @@ function sb_theme_setting_field() {
 add_action('sb_admin_init', 'sb_theme_setting_field');
 
 function sb_theme_logo_callback() {
-    $options = SB_Option::get();
-    $value = isset($options['theme']['logo']) ? $options['theme']['logo'] : '';
+    $value = SB_Option::get_logo_url();
     $args = array(
         'id' => 'sb_theme_logo',
         'name' => 'sb_options[theme][logo]',
         'value' => $value,
+        'container_class' => 'margin-bottom',
         'description' => __('You can enter url or upload new logo image file.', 'sb-theme')
     );
     SB_Field::media_image($args);
+    $value = SB_Option::get_logo_type();
+    $list_options = array(
+        'background' => __('Background image', 'sb-theme'),
+        'image' => __('Image', 'sb-theme'),
+        'text' => __('Text', 'sb-theme')
+    );
+    $args = array(
+        'id' => 'sb_theme_logo_type',
+        'name' => 'sb_options[theme][logo_type]',
+        'value' => $value,
+        'list_options' => $list_options,
+        'container_class' => 'margin-bottom',
+        'field_class' => 'logo-type',
+        'description' => __('Choose the way you want logo to be displayed.', 'sb-theme')
+    );
+    SB_Field::select($args);
+    $container_class = 'hidden';
+    if($value == 'text') {
+        $container_class = 'visible';
+    }
+    $container_class .= ' logo-text';
+    $value = SB_Option::get_logo_text();
+    $args = array(
+        'id' => 'sb_theme_logo_text',
+        'name' => 'sb_options[theme][logo_text]',
+        'value' => $value,
+        'container_class' => $container_class,
+        'description' => __('Enter the text you want to display as logo.', 'sb-theme')
+    );
+    SB_Field::text_field($args);
 }
 
 function sb_theme_favicon_callback() {
@@ -42,3 +72,10 @@ function sb_theme_favicon_callback() {
     );
     SB_Field::media_image($args);
 }
+
+function sb_theme_sanitize($input) {
+    $data = $input;
+    $data['theme']['logo_type'] = isset($input['theme']['logo_type']) ? $input['theme']['logo_type'] : 'background';
+    return $data;
+}
+add_filter('sb_options_sanitize', 'sb_theme_sanitize');

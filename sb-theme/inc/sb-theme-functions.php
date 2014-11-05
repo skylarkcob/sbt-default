@@ -22,6 +22,17 @@ function sb_theme_get_default_theme() {
 }
 
 function sb_theme_check_core() {
+    $user_deactivate_sb_core = false;
+    $sb_core_activated = intval(get_option('sb_core_activated'));
+    if($sb_core_activated == 0) {
+        $caller = get_option('sb_core_deactivated_caller');
+        if('user' == $caller || empty($caller) || 'wp' != $caller) {
+            $user_deactivate_sb_core = true;
+        }
+    }
+    if(is_admin() && !$user_deactivate_sb_core) {
+        return true;
+    }
 	$sb_core_installed = class_exists('SB_Core');
 	if(!$sb_core_installed) {
         $theme = sb_theme_get_default_theme();
@@ -44,15 +55,19 @@ if(!sb_theme_check_core()) {
 }
 
 function sb_theme_after_setup() {
-	load_theme_textdomain( 'sb-theme', get_template_directory() . '/languages' );
+    load_theme_textdomain('sb-theme', get_template_directory() . '/languages');
+
     register_nav_menus(array(
-        'primary'   => __( 'Primary menu', 'sb-theme' ),
-        'secondary' => __( 'Secondary menu', 'sb-theme' ),
+        'primary'   => __('Primary menu', 'sb-theme'),
+        'secondary' => __('Secondary menu', 'sb-theme'),
+        'footer' => __('Footer menu', 'sb-theme')
     ));
+
     add_theme_support('post-thumbnails');
-    add_theme_support( 'html5', array(
+
+    add_theme_support('html5', array(
         'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-    ) );
+    ));
 }
 add_action('after_setup_theme', 'sb_theme_after_setup');
 
@@ -73,6 +88,22 @@ function sb_get_custom_template_part($slug, $name = null) {
 
 function sb_get_template_part($slug, $name = null) {
     get_template_part('sb-theme/inc/' . $slug, $name);
+}
+
+function sb_get_custom_loop($slug, $name = null) {
+    sb_get_custom_template_part('loop/' . $slug, $name);
+}
+
+function sb_get_custom_content($slug, $name = null) {
+    sb_get_custom_template_part('content/' . $slug, $name);
+}
+
+function sb_get_custom_ajax($slug, $name = null) {
+    sb_get_custom_template_part('ajax/' . $slug, $name);
+}
+
+function sb_get_custom_carousel($slug, $name = null) {
+    sb_get_custom_template_part('carousel/' . $slug, $name);
 }
 
 function sb_theme_style_and_script() {
