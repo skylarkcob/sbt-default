@@ -19,6 +19,7 @@ h6.poetry {
 }
 
 .site-logo {
+    line-height: 17px;
     margin: 0;
 }
 
@@ -27,17 +28,25 @@ h6.poetry {
 }
 
 .gray-bg {
-    background-color: #f4f4f4;
+    background-color: #f6f6f6;
 }
 
 .padding-section {
     padding: 40px 0;
 }
 
+.padding-bottom {
+    padding-bottom: 40px;
+}
+.padding-bottom-40 {
+    padding-bottom: 40px;
+}
 .min-height {
     min-height: 400px;
 }
-
+.overflow-hidden {
+    overflow: hidden;
+}
 .site-logo a {
     background-position: left center;
     background-repeat: no-repeat;
@@ -110,6 +119,7 @@ a:hover {
     text-decoration: none;
 }
 
+a:active,
 a:focus {
     outline: 0 none;
 }
@@ -117,6 +127,14 @@ a:focus {
 .actions #coupon_code {
     min-width: 150px;
     height: 28px;
+}
+
+.icon-right {
+    margin-left: 8px;
+}
+
+.icon-left {
+    margin-right: 5px;
 }
 
 .cart .actions .button,
@@ -219,6 +237,10 @@ a:focus {
 .sb-site-tree .has-sub .arrow:before,
 .sb-site-tree .no-sub .arrow:before {
     font-family: "FontAwesome";
+}
+
+.font-awesome {
+    font-family: FontAwesome;
 }
 
 .woocommerce #content .product .cart > .button.single_add_to_cart_button:after,
@@ -649,7 +671,24 @@ img {
     padding: 11px 22px;
     margin-bottom: 24px;
 }
-
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+.margin-bottom-40 {
+    margin-bottom: 40px;
+}
+.margin-top-20 {
+    margin-top: 20px;
+}
+.margin-top-30 {
+    margin-top: 30px;
+}
+.no-margin {
+    margin: 0;
+}
 .msg-box.warning {
     border-left: 6px solid rgba(255, 149, 0, 0.5);
     background-color: rgba(255, 149, 0, 0.1);
@@ -847,7 +886,7 @@ button,input,select,textarea{border:1px solid #CCC;border-radius:3px;padding:.42
 
 .widget .post-thumbnail {
     float: left;
-    height: 90px;
+    height: auto;
     margin-right: 10px;
     width: 100px;
 }
@@ -900,6 +939,11 @@ button,input,select,textarea{border:1px solid #CCC;border-radius:3px;padding:.42
     border-bottom: 1px dotted #ddd;
     margin-bottom: 10px;
     padding-bottom: 10px;
+}
+
+.widget .sb-post-widget li:last-child {
+    border-bottom: medium none;
+    margin-bottom: 0;
 }
 
 .widget .sb-post-widget .post-info span {
@@ -1153,7 +1197,6 @@ div.bbp-breadcrumb {
 
 }
 .sb-site-tree .sub-tree li {
-    background-image: url("../images/tree-bg.gif");
     background-position: 0 4px;
     background-repeat: no-repeat;
     padding-left: 25px;
@@ -1162,7 +1205,6 @@ div.bbp-breadcrumb {
 .sb-site-tree .sub-tree,
 .sb-site-tree .tree-node-empty,
 .sb-site-tree .sub-tree .tree-node-empty {
-    background-image: url("../images/tree-empty-bg.gif");
     background-repeat: repeat-y;
 }
 
@@ -1687,8 +1729,13 @@ input:focus:-ms-input-placeholder { color:transparent; }
     font-weight: 700;
 }
 
+.widget ul {
+    list-style: outside none square;
+    margin: 0 0 0 17px;
+}
+
 .widget li {
-    list-style: none outside none;
+    margin-bottom: 5px;
 }
 
 .widget ul,
@@ -1888,7 +1935,6 @@ p.sb-msg.error-line {
 }
 
 .thanh-toan .row.logo-row .doi-tac, .thanh-toan .row.card-row .doi-tac {
-    background: url("../images/doi-tac.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     clear: both;
     display: block;
     height: 30px;
@@ -1904,7 +1950,6 @@ p.sb-msg.error-line {
 }
 
 .bank-icon {
-    background-image: url("../images/logo-bank.png");
     display: block;
     height: 40px;
     text-indent: -9999px;
@@ -1998,7 +2043,6 @@ p.sb-msg.error-line {
 
 
 .thanh-toan .card-icon {
-    background-image: url("../images/logo-phone-card.png");
     background-size: auto 200px;
     display: inline-block;
     height: 100px;
@@ -2025,7 +2069,6 @@ p.sb-msg.error-line {
 
 
 .thanh-toan .small-card {
-    background-image: url("../images/cards.png");
     background-repeat: no-repeat;
     display: inline-block;
     height: 28px;
@@ -2399,7 +2442,6 @@ blockquote {
 
 .loading-container {
     height: 10px;
-    margin-top: 15px;
     width: 100%;
 }
 .loading-container .loading {
@@ -2408,12 +2450,7 @@ blockquote {
     position: relative;
     width: 50px;
 }
-.loading-container .loading.show {
-    display: block;
-}
-.loading-container .loading.noshow {
-    display: none;
-}
+
 @keyframes reveal {
     0% {
         transform: scale(0.001);
