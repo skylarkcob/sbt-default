@@ -1,1 +1,2 @@
-<?php SB_Theme::the_footer(); ?>
+<?php
+SB_Theme::the_footer();
