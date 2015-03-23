@@ -1,2 +1,2 @@
 <?php
-dynamic_sidebar('primary');
+dynamic_sidebar( 'primary' );
