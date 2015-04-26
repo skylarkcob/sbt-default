@@ -1,9 +1,10 @@
 <?php
 function sb_theme_use_old_version() {
+    $value = false;
     if(defined('SB_THEME_USE_OLD_VERSION') && (bool)SB_THEME_USE_OLD_VERSION) {
-        return true;
+        $value = true;
     }
-    return false;
+    return apply_filters('sb_theme_use_old_version', $value);
 }
 
 // Get sb-theme.php file path
@@ -14,11 +15,11 @@ if(sb_theme_use_old_version()) {
     function sb_theme_missing_core_message() {
         $my_theme = wp_get_theme();
         $theme_name = $my_theme->get('Name');
-        return sprintf('<div class="error"><p><strong>' . __('Error', 'sb-theme') . ':</strong> ' . __('The theme with name %1$s can\'t work properly because of missing %2$s core package', 'sb-theme') . '.</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', 'http://github.com/skylarkcob/sb-theme'));
+        return sprintf('<div class="error"><p><strong>' . __('Lỗi:', 'sb-theme') . '</strong> ' . __('Giao diện với tên %1$s sẽ không hoạt động vì thiếu gói %2$s.', 'sb-theme') . '.</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', 'http://github.com/skylarkcob/sb-theme'));
     }
 
     function sb_theme_get_default_wordpress_theme_name() {
-        $transient_name = 'sb_default_wordpress_theme';
+        $transient_name = 'sb_theme_default_wordpress_theme_name';
         if(false === ($default_wordpress_theme = get_transient($transient_name))) {
             $themes = wp_get_themes();
             $wp_theme = '';
@@ -77,7 +78,7 @@ if(sb_theme_use_old_version()) {
         unset($_GET['activated']);
         $my_theme = wp_get_theme();
         $theme_name = $my_theme->get('Name');
-        printf('<div class="error"><p><strong>' . __('Error', 'sb-theme') . ':</strong> ' . __('The theme with name %1$s will be deactivated because of missing %2$s core package.', 'sb-theme') . '.</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', 'http://github.com/skylarkcob/sb-theme'));
+        printf('<div class="error"><p><strong>' . __('Lỗi:', 'sb-theme') . ':</strong> ' . __('Giao diện với tên %1$s sẽ không hoạt động vì thiếu %2$s.', 'sb-theme') . '.</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', 'http://github.com/skylarkcob/sb-theme'));
         $themes = wp_get_themes();
         $wp_theme = '';
         foreach($themes as $theme) {
@@ -104,7 +105,7 @@ if(sb_theme_use_old_version()) {
     // Check if sb-theme.php file exists
     if(!file_exists($sb_theme)) {
         if(!is_admin()) {
-            wp_die(sprintf(__('<strong>Note:</strong> You must put %1$s on your current theme to use it! Click here to %2$s.', 'sb-theme'), '<strong>SB Theme Core</strong>', sprintf('<a target="_blank" href="%1$s">%2$s</a>', 'https://github.com/skylarkcob/sb-theme/', __('download', 'sb-theme'))));
+            wp_die('<strong>' . __('Chú ý:', 'sb-theme') . '</strong>' . sprintf(__('Bạn phải sử dụng gói %1$s để giao diện được hoạt động! Nhấn vào đây để %2$s.', 'sb-theme'), '<strong>SB Theme Core</strong>', sprintf('<a target="_blank" href="%1$s">%2$s</a>', 'https://github.com/skylarkcob/sb-theme/', __('download', 'sb-theme'))));
             exit;
         } elseif(!empty($GLOBALS['pagenow']) && 'themes.php' === $GLOBALS['pagenow']) {
             add_action('admin_notices', 'sb_check_theme_core_admin_notices', 0);
