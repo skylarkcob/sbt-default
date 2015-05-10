@@ -78,7 +78,7 @@ if(sb_theme_use_old_version()) {
         unset($_GET['activated']);
         $my_theme = wp_get_theme();
         $theme_name = $my_theme->get('Name');
-        printf('<div class="error"><p><strong>' . __('Lỗi:', 'sb-theme') . ':</strong> ' . __('Giao diện với tên %1$s sẽ không hoạt động vì thiếu %2$s.', 'sb-theme') . '.</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', 'http://github.com/skylarkcob/sb-theme'));
+        printf('<div class="error"><p><strong>' . __('Lỗi:', 'sb-theme') . '</strong> ' . __('Giao diện với tên %1$s sẽ không hoạt động vì thiếu %2$s.', 'sb-theme') . '</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', 'http://github.com/skylarkcob/sb-theme'));
         $themes = wp_get_themes();
         $wp_theme = '';
         foreach($themes as $theme) {
