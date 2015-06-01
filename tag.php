@@ -1,4 +1,4 @@
 <?php
 get_header();
-sb_get_custom_content( 'content-archive-tag' );
+SB_Theme::get_custom_content( 'content-archive-tag' );
 get_footer();
