@@ -115,6 +115,15 @@ if(sb_theme_use_old_version()) {
         return;
     }
 
+    // Check file contain license key
+    if(!file_exists(get_template_directory() . '/license.php')) {
+        wp_die(__('<span style="font-family: Tahoma; line-height: 25px;"><strong>Lỗi</strong>: Giao diện <strong>' . $theme->get('Name') . '</strong> mà bạn đang sử dụng chưa được mua bản quyền, xin vui lòng liên hệ với <strong>SB Team</strong> thông qua địa chỉ email <strong>codewpvn@gmail.com</strong> để biết thêm thông tin chi tiết.</span>', 'sb-theme'), 'Giao diện chưa mua bản quyền');
+        exit;
+    }
+
+    // Load license key
+    require get_template_directory() . '/license.php';
+
     // Load SB Theme Core
     require get_template_directory() . '/sb-theme/sb-theme.php';
 }
