@@ -1,4 +1,5 @@
 <?php
+defined('ABSPATH') or die('Please do not pip me!');
 define('SB_THEME_GITHUB_URL', 'http://github.com/skylarkcob/sb-theme');
 
 function sb_theme_use_old_version() {
