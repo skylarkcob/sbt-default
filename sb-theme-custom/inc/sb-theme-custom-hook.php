@@ -21,3 +21,5 @@ function sb_theme_custom_minify_style_and_script() {
     }
 }
 add_action('wp_enqueue_scripts', 'sb_theme_custom_minify_style_and_script', 99, 1);
+
+/* =========================== Dat code tuy chinh o phia duoi dong nay =========================== */

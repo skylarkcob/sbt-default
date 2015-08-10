@@ -1,6 +1,12 @@
 <?php
 defined('ABSPATH') or die('Please do not pip me!');
 
+define('SB_THEME_WP_PHP_VERSION', '5.2.4');
+
+if(version_compare(PHP_VERSION, SB_THEME_WP_PHP_VERSION, '<')) {
+    wp_die('<p style="font-family: arial"><strong>Lỗi phiên bản PHP:</strong> Hosting của bạn phải chạy <strong>PHP phiên bản ' . SB_THEME_WP_PHP_VERSION . '</strong> trở về sau để WordPress có thể hoạt động được, khuyến khích nên dùng <strong>PHP phiên bản 5.4</strong> trở lên.</p>', 'Lỗi server');
+}
+
 define('SB_THEME_GITHUB_URL', 'http://github.com/skylarkcob/sb-theme');
 
 function sb_theme_use_old_version() {
