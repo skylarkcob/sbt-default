@@ -62,9 +62,9 @@ function sb_theme_missing_core_message() {
     $sb_theme_language = sb_theme_get_language();
     $my_theme = wp_get_theme();
     $theme_name = $my_theme->get('Name');
-    $message = sprintf('<div class="error"><p><strong>' . __('Error:', 'sb-theme') . '</strong> ' . __('%1$s theme will be deactivated because of missing %2$s.', 'sb-theme') . '</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', SB_THEME_GITHUB_URL));
+    $message = sprintf('<div class="error"><p><strong>' . __('Error:', 'sb-theme') . '</strong> ' . __('Theme %1$s will be deactivated because of missing %2$s. Please contact %3$s via email %4$s for more information.', 'sb-theme') . '</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', SB_THEME_GITHUB_URL), '<strong>SB Team</strong>', '<i>codewpvn@gmail.com</i>');
     if('vi' == $sb_theme_language) {
-        $message = sprintf('<div class="error"><p><strong>Lỗi:</strong> Giao diện với tên %1$s sẽ không hoạt động vì thiếu gói %2$s.</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', SB_THEME_GITHUB_URL));
+        $message = sprintf('<div class="error"><p><strong>Lỗi:</strong> Giao diện %1$s sẽ không hoạt động vì thiếu gói %2$s. Xin vui lòng liên hệ với %3$s thông qua địa chỉ email %4$s để biết thêm thông tin chi tiết.</p></div>', '<strong>' . $theme_name . '</strong>', sprintf('<a target="_blank" href="%s" style="text-decoration: none">SB Theme</a>', SB_THEME_GITHUB_URL), '<strong>SB Team</strong>', '<i>codewpvn@gmail.com</i>');
     }
     return $message;
 }
