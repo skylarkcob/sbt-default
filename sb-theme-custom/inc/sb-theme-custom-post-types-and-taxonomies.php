@@ -1,6 +1,5 @@
 <?php
 defined('ABSPATH') or die('Please do not pip me!');
-
 function sb_theme_custom_create_post_type_and_taxonomy() {
 
 }

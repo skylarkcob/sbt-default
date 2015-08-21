@@ -1,6 +1,5 @@
 <?php
 defined('ABSPATH') or die('Please do not pip me!');
-
 function sb_theme_get_language() {
     global $sb_theme;
     if(!is_array($sb_theme)) {
@@ -11,11 +10,8 @@ function sb_theme_get_language() {
     $sb_theme['language'] = $sb_theme_language;
     return $sb_theme_language;
 }
-
 $sb_theme_language = sb_theme_get_language();
-
 define('SB_THEME_WP_PHP_VERSION', '5.2.4');
-
 function sb_theme_php_version_error_message() {
     $sb_theme_language = sb_theme_get_language();
     $message = '<p style="font-family: arial"><strong>';
@@ -28,11 +24,9 @@ function sb_theme_php_version_error_message() {
     }
     return $message;
 }
-
 function sb_theme_php_version_error_admin_notices() {
     echo '<div class="error">' . sb_theme_php_version_error_message() . '</div>';
 }
-
 if(version_compare(PHP_VERSION, SB_THEME_WP_PHP_VERSION, '<')) {
     if(is_admin()) {
         add_action('admin_notices', 'sb_theme_php_version_error_admin_notices');
@@ -44,9 +38,7 @@ if(version_compare(PHP_VERSION, SB_THEME_WP_PHP_VERSION, '<')) {
         }
     }
 }
-
 define('SB_THEME_GITHUB_URL', 'http://github.com/skylarkcob/sb-theme');
-
 function sb_theme_use_old_version() {
     $value = false;
     if(defined('SB_THEME_USE_OLD_VERSION') && (bool)SB_THEME_USE_OLD_VERSION) {
@@ -54,10 +46,7 @@ function sb_theme_use_old_version() {
     }
     return apply_filters('sb_theme_use_old_version', $value);
 }
-
-// Get sb-theme.php file path
 $sb_theme = get_template_directory() . '/sb-theme/sb-theme.php';
-
 function sb_theme_missing_core_message() {
     $sb_theme_language = sb_theme_get_language();
     $my_theme = wp_get_theme();
@@ -68,9 +57,7 @@ function sb_theme_missing_core_message() {
     }
     return $message;
 }
-
 if(sb_theme_use_old_version()) {
-
     function sb_theme_get_default_wordpress_theme_name() {
         $transient_name = 'sb_theme_default_wordpress_theme_name';
         if(false === ($default_wordpress_theme = get_transient($transient_name))) {
@@ -99,21 +86,17 @@ if(sb_theme_use_old_version()) {
         }
         return $default_wordpress_theme;
     }
-
     function sb_theme_switch_to_default_theme() {
         $default_wordpress_theme = sb_theme_get_default_wordpress_theme_name();
         if(!empty($default_wordpress_theme)) {
             switch_theme($default_wordpress_theme);
         }
     }
-
     function sb_theme_switch_to_default_wordpress_theme() {
         unset($_GET['activated']);
         echo sb_theme_missing_core_message();
         sb_theme_switch_to_default_theme();
     }
-
-    // Check if sb-theme.php file exists
     if(!file_exists($sb_theme)) {
         if(!is_admin()) {
             wp_die( sb_theme_missing_core_message() );
@@ -123,8 +106,6 @@ if(sb_theme_use_old_version()) {
         }
         return;
     }
-
-    // Load SB Theme Core
     require get_template_directory() . '/sb-theme/sb-theme.php';
 } else {
     function sb_check_theme_core_admin_notices() {
@@ -152,8 +133,6 @@ if(sb_theme_use_old_version()) {
             switch_theme($theme->get('TextDomain'));
         }
     }
-
-    // Check if sb-theme.php file exists
     if(!file_exists($sb_theme)) {
         if(!is_admin()) {
             wp_die(sb_theme_missing_core_message());
@@ -163,8 +142,6 @@ if(sb_theme_use_old_version()) {
         }
         return;
     }
-
-    // Check file contain license key
     if(!file_exists(get_template_directory() . '/license.php')) {
         if('vi' == $sb_theme_language) {
             wp_die('<span style="font-family: Tahoma; line-height: 25px;"><strong>Lỗi:</strong> Giao diện <strong>' . $theme->get('Name') . '</strong> mà bạn đang sử dụng chưa được mua bản quyền, xin vui lòng liên hệ với <strong>SB Team</strong> thông qua địa chỉ email <strong>codewpvn@gmail.com</strong> để biết thêm thông tin chi tiết.</span>', 'Giao diện chưa mua bản quyền');
@@ -173,10 +150,6 @@ if(sb_theme_use_old_version()) {
         }
         exit;
     }
-
-    // Load license key
     require get_template_directory() . '/license.php';
-
-    // Load SB Theme Core
     require get_template_directory() . '/sb-theme/sb-theme.php';
 }

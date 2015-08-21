@@ -1,6 +1,9 @@
 <?php
 defined('ABSPATH') or die('Please do not pip me!');
+function sb_theme_custom_lib_style_and_script() {
 
+}
+add_action('wp_enqueue_scripts', 'sb_theme_custom_lib_style_and_script');
 function sb_theme_custom_style_and_script() {
     wp_register_style('sb-theme-custom-style', SB_THEME_CUSTOM_URL . '/css/sb-theme-custom-style.css');
     wp_register_style('sb-theme-custom-mobile-style', SB_THEME_CUSTOM_URL . '/css/sb-theme-custom-mobile-style.css');
@@ -14,12 +17,10 @@ function sb_theme_custom_style_and_script() {
     }
 }
 add_action('wp_enqueue_scripts', 'sb_theme_custom_style_and_script');
-
 function sb_theme_custom_minify_style_and_script() {
     if(!SB_Core::is_theme_developing() && SB_Tool::minify_style_and_script()) {
         SB_Core::minify_styles_and_scripts();
     }
 }
 add_action('wp_enqueue_scripts', 'sb_theme_custom_minify_style_and_script', 99, 1);
-
-/* =========================== Dat code tuy chinh o phia duoi dong nay =========================== */
+/* =========================== Put your custom code below this line =========================== */
